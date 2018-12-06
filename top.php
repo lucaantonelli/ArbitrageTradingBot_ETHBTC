@@ -1,7 +1,3 @@
-<?php
-    require_once __DIR__ . '/../vendor/autoload.php';
-?>
-
 <!doctype html>
 <html>
 	<head>
@@ -31,16 +27,12 @@
 			}
 			.table td, .table th{
 				text-align: center;
-    			vertical-align: middle;
-			}
-			.table {
-				width:100%;
+    				vertical-align: middle;
 			}
 			.row {
 				text-align: center;
-    			vertical-align: middle;
+    				vertical-align: middle;
 			}
-
 		</style>
 
 		<title>Arbitrage Bot</title>
@@ -52,9 +44,6 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     			<div class="navbar-nav">
 					<a class="navbar-brand" href="#">Arbitrage Trading Bot</a>
-					<a class="nav-item nav-link" href="/binance">Binance</a>
-					<a class="nav-item nav-link" href="/bittrex">Bittrex</a>
-					<a class="nav-item nav-link" href="/cobinhood">Cobinhood</a>
 				</div>
 			</div>
 		</nav>
