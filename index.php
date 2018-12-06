@@ -1,4 +1,4 @@
-<?php require_once __DIR__ .  '/../commons/top.php'; ?>
+<?php require_once __DIR__ .  '/top.php'; ?>
 
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
@@ -13,25 +13,20 @@
   </nav>
 
 <?php
-
   $orderbook = array("https://api.binance.com/api/v1/depth?symbol=ETHBTC", "https://openapi.bitmart.com/v2/symbols/ETH_BTC/orders?precision=6", "https://apiv2.bitz.com/Market/depth?symbol=eth_btc", "https://api.cobinhood.com/v1/market/orderbooks/ETH-BTC?limit=1", "https://api.hitbtc.com/api/2/public/orderbook/ETHBTC?limit=1", /*"https://api.kraken.com/0/public/Depth?pair=XETHXXBT",*/ "https://api.kucoin.com/v1/open/orders?symbol=ETH-BTC&limit=1");
-  // array of curl handles
+
   $multiCurl = array();
-  // data to be returned
   $result = array();
-  // multi handle
   $mh = curl_multi_init();
 
   foreach ($orderbook as $i => $url) {
-
     $multiCurl[$i] = curl_init();
-    curl_setopt($multiCurl[$i], CURLOPT_URL, $url);
-	  curl_setopt($multiCurl[$i], CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Accept: application/json'));
+   	curl_setopt($multiCurl[$i], CURLOPT_URL, $url);
+	curl_setopt($multiCurl[$i], CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Accept: application/json'));
     curl_setopt($multiCurl[$i], CURLOPT_RETURNTRANSFER, true);
     curl_setopt($multiCurl[$i], CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
     curl_multi_add_handle($mh, $multiCurl[$i]);
   }
-
   $index=null;
 
   do {
@@ -71,7 +66,7 @@
     echo $bitzBuyPrice;
   }
   else {*/
-    $bitzBuyPrice = end($bitzAskArray)[0] + end($bitzAskArray)[0] * 0.1 / 100;
+   $bitzBuyPrice = end($bitzAskArray)[0] + end($bitzAskArray)[0] * 0.1 / 100;
   //}
 
   $cobSellPrice = $cobinhood['result']['orderbook']['bids'][0][0];
@@ -868,5 +863,5 @@
 <?php
   // close
   curl_multi_close($mh);
-  require_once __DIR__ .  '/../commons/bottom.php';
+  require_once __DIR__ .  '/bottom.php';
 ?>
